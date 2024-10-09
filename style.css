@@ -1,180 +1,200 @@
 /* Global styles */
+:root {
+    --clr-black: #1c1c1c;
+    --clr-gray: #ececec;
+    --clr-white: #f7f7f7;
+
+    --type-normal: #A8A878;
+    --type-fire: #F08030;
+    --type-water: #6890F0;
+    --type-grass: #78C850;
+    --type-electric: #F8D030;
+    --type-ice: #98D8D8;
+    --type-fighting: #C03028;
+    --type-poison: #A040A0;
+    --type-ground: #E0C068;
+    --type-flying: #A890F0;
+    --type-psychic: #F85888;
+    --type-bug: #A8B820;
+    --type-rock: #B8A038;
+    --type-ghost: #705898;
+    --type-dark: #705848;
+    --type-dragon: #7038F8;
+    --type-steel: #B8B8D0;
+    --type-fairy: #F0B6BC;
+}
+
 * {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-    background-color: #48CFCB;
+    background-color: lightslategrey;
+    color: var(--clr-black);
+    min-height: 100vh;
 }
 
+/* Header */
 body h1 {
     text-align: center;
-    color: #fff;
+    color: var(--clr-black);
+    padding: 1rem;
+    font-weight: 600;
 }
 
-/* Search box */
 .search {
-    --padding: 24px;
-    width: max-content;
     display: flex;
     align-items: center;
-    padding: var(--padding);
-    border-radius: 28px;
-    background: transparent;
-    width: 600px;
+    justify-content: center;
+    margin: 20px auto; /* Center the search bar with auto margins */
+    width: 600px; /* Set a fixed width for the search bar */
+    position: relative; /* Required for positioning the search icon */
 }
 
 .search-input {
-    font-size: 16px;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #fff;
-    margin-left: var(--padding);
-    outline: none;
-    border: none;
-    background: darkslategray;
-    flex: 1;
+    width: 100%; /* Full width to fill the parent container */
+    padding: 15px 20px; /* Add padding for a larger clickable area */
+    font-size: 18px; /* Increase the font size for better readability */
+    border: 2px solid #48CFCB; /* Add a solid border in the same color as the background */
+    border-radius: 50px; /* Create rounded corners for a modern, soft look */
+    background-color: #fff; /* White background for the search field */
+    color: #333; /* Darker text color inside the search input */
+    transition: border-color 0.3s ease-in-out; /* Smooth transition for border color change on focus */
+    outline: none; /* Remove the default browser outline on focus */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow to make the search bar stand out */
 }
 
-.search:focus-within {
-    box-shadow: 0 0 2px rgba(255, 255, 255, 0.75);
+.search-input::placeholder {
+    color: #aaa; /* Light gray color for placeholder text */
 }
 
-.search-input::placeholder,
-search.icon {
-    color: rgba(255, 255, 255, 0.5);
+.search-input:focus {
+    border-color: #3ac7ff; /* Change the border color to blue when the input is focused */
+    box-shadow: 0px 4px 20px rgba(58, 199, 255, 0.5); /* Add a soft blue glow when the search bar is active */
+}
+
+.search-icon {
+    position: absolute; /* Position the icon inside the search bar */
+    right: 20px; /* Place it 20px from the right edge of the input */
+    top: 50%; /* Center the icon vertically inside the search bar */
+    transform: translateY(-50%); /* Move the icon vertically so it's perfectly centered */
+    font-size: 20px; /* Size of the search icon */
+    color: #888; /* Light gray color for the icon */
+}
+
+.search-input:hover + .search-icon {
+    color: #3ac7ff; /* Change the icon color to blue when hovering over the search input */
 }
 
 /* Pokemon cards */
 .pokemon-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+    padding: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 .card {
-    border: 1px solid #ffffff;
     border-radius: 10px;
-    width: 150px;
-    height: 220px;
-    background-color: rgb(250, 250, 250);
-    box-shadow: 0px 1px 5px #000;
+    background-color: var(--clr-white);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    padding: 1rem;
 }
 
 .card img {
     width: 100%;
-    height: 145px;
-    padding: 15px;
+    height: auto;
+    margin-bottom: 10px;
 }
 
 .card:hover {
-    box-shadow: 0px 1px 15px #3ac7ff;
-    transition: 0.3s;
+    transform: translateY(-5px);
+    box-shadow: 0 0 15px rgba(58, 199, 255, 0.6);
 }
 
-.card ul {
-    padding: 0px;
-    margin: 0px;
-    text-align: center;
-}
+/* Pokemon types colors */
+.poison { background-color: var(--type-poison); color: var(--clr-white); }
+.grass { background-color: var(--type-grass); color: var(--clr-black); }
+.psychic { background-color: var(--type-psychic); color: var(--clr-black); }
+.fire { background-color: var(--type-fire); color: var(--clr-black); }
+.water { background-color: var(--type-water); color: var(--clr-white); }
+.ice { background-color: var(--type-ice); color: var(--clr-black); }
+.electric { background-color: var(--type-electric); color: var(--clr-black); }
+.fighting { background-color: var(--type-fighting); color: var(--clr-white); }
+.steel { background-color: var(--type-steel); color: var(--clr-black); }
+.rock { background-color: var(--type-rock); color: var(--clr-black); }
+.fairy { background-color: var(--type-fairy); color: var(--clr-black); }
+.normal { background-color: var(--type-normal); color: var(--clr-black); }
+.flying { background-color: var(--type-flying); color: var(--clr-black); }
+.bug { background-color: var(--type-bug); color: var(--clr-black); }
+.ground { background-color: var(--type-ground); color: var(--clr-black); }
+.dark { background-color: var(--type-dark); color: var(--clr-white); }
+.ghost { background-color: var(--type-ghost); color: var(--clr-white); }
+.dragon { background-color: var(--type-dragon); color: var(--clr-white); }
 
-/* Pokemon types colors and shadows */
-.poison { color: darkviolet; }
-.grass { color: lightgreen; }
-.psychic { color: purple; }
-.fire { color: red; }
-.water { color: blue; }
-.ice { color: lightblue; }
-.electric { color: yellow; }
-.fighting { color: brown; }
-.steel { color: slategrey; }
-.rock { color: #ba8b09; }
-.fairy { color: pink; }
-.normal { color: peachpuff; }
-.flying { color: violet; }
-.bug { color: green; }
-.ground { color: #fcba03; }
-.dark { color: #535353; }
-.ghost { color: #fff; }
-.dragon { color: orangered; }
-
-.card:hover:has(.poison) { filter: drop-shadow(0 1px 15px darkviolet); }
-.card:hover:has(.grass) { filter: drop-shadow(0 1px 15px lightgreen); }
-.card:hover:has(.psychic) { filter: drop-shadow(0 1px 15px purple); }
-.card:hover:has(.fire) { filter: drop-shadow(0 1px 15px red); }
-.card:hover:has(.water) { filter: drop-shadow(0 1px 15px blue); }
-.card:hover:has(.ice) { filter: drop-shadow(0 1px 15px lightblue); }
-.card:hover:has(.electric) { filter: drop-shadow(0 1px 15px yellow); }
-.card:hover:has(.fighting) { filter: drop-shadow(0 1px 15px brown); }
-.card:hover:has(.steel) { filter: drop-shadow(0 1px 15px slategrey); }
-.card:hover:has(.rock) { filter: drop-shadow(0 1px 15px #ba8b09); }
-.card:hover:has(.fairy) { filter: drop-shadow(0 1px 15px pink); }
-.card:hover:has(.normal) { filter: drop-shadow(0 1px 15px peachpuff); }
-.card:hover:has(.flying) { filter: drop-shadow(0 1px 15px violet); }
-.card:hover:has(.bug) { filter: drop-shadow(0 1px 15px green); }
-.card:hover:has(.ground) { filter: drop-shadow(0 1px 15px #fcba03); }
-.card:hover:has(.dark) { filter: drop-shadow(0 1px 15px #535353); }
-.card:hover:has(.ghost) { filter: drop-shadow(0 1px 15px #fff); }
-.card:hover:has(.dragon) { filter: drop-shadow(0 1px 15px orangered); }
+.card:hover:has(.poison) { box-shadow: 0 0 15px var(--type-poison); }
+.card:hover:has(.grass) { box-shadow: 0 0 15px var(--type-grass); }
+.card:hover:has(.psychic) { box-shadow: 0 0 15px var(--type-psychic); }
+.card:hover:has(.fire) { box-shadow: 0 0 15px var(--type-fire); }
+.card:hover:has(.water) { box-shadow: 0 0 15px var(--type-water); }
+.card:hover:has(.ice) { box-shadow: 0 0 15px var(--type-ice); }
+.card:hover:has(.electric) { box-shadow: 0 0 15px var(--type-electric); }
+.card:hover:has(.fighting) { box-shadow: 0 0 15px var(--type-fighting); }
+.card:hover:has(.steel) { box-shadow: 0 0 15px var(--type-steel); }
+.card:hover:has(.rock) { box-shadow: 0 0 15px var(--type-rock); }
+.card:hover:has(.fairy) { box-shadow: 0 0 15px var(--type-fairy); }
+.card:hover:has(.normal) { box-shadow: 0 0 15px var(--type-normal); }
+.card:hover:has(.flying) { box-shadow: 0 0 15px var(--type-flying); }
+.card:hover:has(.bug) { box-shadow: 0 0 15px var(--type-bug); }
+.card:hover:has(.ground) { box-shadow: 0 0 15px var(--type-ground); }
+.card:hover:has(.dark) { box-shadow: 0 0 15px var(--type-dark); }
+.card:hover:has(.ghost) { box-shadow: 0 0 15px var(--type-ghost); }
+.card:hover:has(.dragon) { box-shadow: 0 0 15px var(--type-dragon); }
 
 /* Pokemon details page */
 .pokemon-page {
-    width: 800px;
-    margin: 50px auto;
-    background-color: aliceblue;
-    padding: 25px;
-    border-radius: 5px;
-    box-shadow: 0px 1px 5px #00000065;
+    background-color: var(--clr-white);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 3rem auto;
 }
 
 .pokemon-page h1 {
-    color: #000;
+    color: var(--clr-black);
 }
 
 .pokemon-page p {
     text-align: center;
-    margin: 10px auto;
-    font-size: 12px;
-}
-
-.pokemon-page-image {
-    width: 380px;
-    text-align: center;
-}
-
-.pokemon-page-image img {
-    width: 240px;
-    margin: 5px auto;
+    font-size: 1rem;
+    color: var(--clr-black);
+    margin: 1rem 0;
 }
 
 .pokemon-main-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-}
-
-.pokemon-page-details,
-.pokemon-page-stats {
-    padding: 10px 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
 }
 
 .pokemon-page-stats table {
-    margin: 10px auto;
     width: 100%;
 }
 
 .pokemon-page-stats table .bar div {
-    width: 0px;
+    width: 0;
     height: 13px;
     background-color: #16ff16;
-}
-
-.pokemon-main-content table {
-    border-collapse: collapse;
-}
-
-.pokemon-main-content table tr td {
-    border-bottom: 1px solid #0000002d;
-    padding: 2px 0px;
 }
 
 .pokemon-page-evolution {
@@ -182,40 +202,10 @@ search.icon {
     flex-wrap: wrap;
 }
 
-.pokemon-main-content table tr td:nth-child(1) {
-    color: rgb(90, 90, 90);
-}
-
-.pokemon-main-content table tr td:nth-child(2) {
-    padding-left: 15px;
-    font-weight: 500;
-}
-
 .pokemon-page-details span {
-    font-weight: 500;
-    font-size: 10px;
-    margin: auto 2px;
-    padding: 2px 5px;
+    font-weight: 600;
+    background-color: var(--clr-gray);
+    padding: 0.5rem;
     border-radius: 5px;
-    box-shadow: 0 1px 3px -1px #000000d7;
+    color: var(--clr-black);
 }
-
-/* For Pokemon abilities colors */
-.pokemon-page-details:has(.electric) .pokemon-page-abilities span { background-color: #c90; }
-.pokemon-page-details:has(.psychic) .pokemon-page-abilities span { background-color: #ff227a; }
-.pokemon-page-details:has(.grass) .pokemon-page-abilities span { background-color: green; }
-.pokemon-page-details:has(.poison) .pokemon-page-abilities span { background-color: purple; }
-.pokemon-page-details:has(.fire) .pokemon-page-abilities span { background-color: rgba(255, 68, 0, 0.81); }
-.pokemon-page-details:has(.water) .pokemon-page-abilities span { background-color: blue; }
-.pokemon-page-details:has(.flying) .pokemon-page-abilities span { background-color: darkblue; }
-.pokemon-page-details:has(.bug) .pokemon-page-abilities span { background-color: darkgreen; }
-.pokemon-page-details:has(.normal) .pokemon-page-abilities span { background-color: grey; }
-.pokemon-page-details:has(.ground) .pokemon-page-abilities span { background-color: #bf9926; }
-.pokemon-page-details:has(.fairy) .pokemon-page-abilities span { background-color: #e76de7; }
-.pokemon-page-details:has(.fighting) .pokemon-page-abilities span { background-color: darkred; }
-.pokemon-page-details:has(.rock) .pokemon-page-abilities span { background-color: #a59249; }
-.pokemon-page-details:has(.steel) .pokemon-page-abilities span { background-color: #8e8ea4; }
-.pokemon-page-details:has(.dark) .pokemon-page-abilities span { background-color: #573e31; }
-.pokemon-page-details:has(.ice) .pokemon-page-abilities span { background-color: #0af; }
-.pokemon-page-details:has(.ghost) .pokemon-page-abilities span { background-color: #5454b3; }
-.pokemon-page-details:has(.dragon) .pokemon-page-abilities span { background-color: #4e38e9; }
